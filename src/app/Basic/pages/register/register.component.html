@@ -1,0 +1,61 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h4>Register
+                <a href="/" class="btn btn-danger float-end">Back</a>
+            </h4>
+        </div>
+        <div class="card-body">
+
+                <form [formGroup]="registerForm" (ngSubmit)="register()">
+                    <div class="mb-3">
+                        <label for="">Name</label>
+                        <input 
+                        type="text" 
+                        name="name"
+                        formControlName="name"
+                        class="form-control"/>
+
+                        <small *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="text-danger">
+                            <div *ngIf="name?.errors?.['required']">Name is required. </div>
+                        </small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="">Email</label>
+                        <input 
+                        type="email" 
+                        name="email" 
+                        formControlName="email"
+                        class="form-control"/>
+
+                        <small *ngIf="email?.invalid && (email?.touched || email?.dirty)" class="text-danger">
+                            <div *ngIf="email?.errors?.['required']">Email is required. </div>
+                            <div *ngIf="email?.errors?.['email']">Email should be valid</div>
+                        </small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="">Password</label>
+                        <input 
+                        type="password" 
+                        name="password"
+                        formControlName="password"
+                        class="form-control"/>
+
+                        <small *ngIf="password?.invalid && (password?.touched || password?.dirty)" class="text-danger">
+                            <div *ngIf="password?.errors?.['required']">Password is required. </div>
+                        </small>
+                    </div>
+
+                    <div class="mb-3">
+                        <button class="btn btn-primary" type="submit" [disabled]="registerForm.invalid">Register</button>
+                    </div>
+                    <div class="mt-2">
+                        have an account? <a href="login">Login</a>
+                    </div>
+                </form>
+
+        </div>
+    </div>
+</div>

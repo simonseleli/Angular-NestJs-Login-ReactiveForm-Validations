@@ -1,0 +1,42 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h4>Login Form
+                <a href="/" class="btn btn-danger float-end">Back</a>
+            </h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="mb-3">
+                    <label for="email">User Name</label>
+                    <input type="email" 
+                           formControlName="email"  
+                           class="form-control" />
+                           <!-- formControlName is the binder, to access the input data as [(ngModel)] -->
+                            
+                    <small *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+                        <div *ngIf="email?.errors?.['requiredSubmit']">Email is required.</div>
+                        <div *ngIf="email?.errors?.['email']">Email should be valid.</div>
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password">Password</label>
+                    <input type="password" 
+                           formControlName="password" 
+                           class="form-control" />
+                    <small *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
+                        <div *ngIf="password?.errors?.['required']">Password is required.</div>
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+                    <div class="mt-2">
+                        don't have an account? <a href="register">register</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
